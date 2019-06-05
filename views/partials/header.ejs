@@ -1,0 +1,32 @@
+
+<div class="container">
+		<!-- Blueprint header -->
+		<button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>
+		<nav id="ml-menu" class="menu">
+			<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
+			<div class="menu__wrap">
+				<ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="All">
+					<% for (var i = 0; i < frm_data.length; i++) { %>
+						
+						<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-<%= i+1 %>" aria-owns="submenu-<%= i+1 %>" href="/<%= frm_data[i].title.replace(/\s+/g, '').toLowerCase() %>"><%= frm_data[i].title %></a></li>
+ 					<% }%> 
+				</ul>
+
+				<% for (var i = 0; i < frm_data.length; i++) { %>
+					<ul data-menu="submenu-<%= i+1 %>" id="submenu-<%= i+1 %>" class="menu__level" tabindex="-1" role="menu" aria-label=<%= frm_data[i].title %>>
+						<% for (var j = 0; j < frm_data[i].tsubmenu.length; j++) { %>
+
+							
+							<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-1-1" aria-owns="submenu-1-1" href="/<%= frm_data[i].title.replace(/\s+/g, '').toLowerCase() %>/<%= frm_data[i].tsubmenu[j].replace(/\s+/g, '').toLowerCase() %>"><%= frm_data[i].tsubmenu[j] %></a></li>
+						<% } %>
+						
+					</ul>
+				<% }%> 
+				
+			</div>
+		</nav>
+		<div class="content">
+			<p class="info"><%= page %></p>
+			<!-- Ajax loaded content here -->
+		</div>
+	</div>
